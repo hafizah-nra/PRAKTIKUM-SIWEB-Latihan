@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TumblrVault – Sistem Manajemen Penjualan Tumbler</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand-custom" href="index.html">Tumblr<span>Vault</span></a>
+      <button class="navbar-toggler navbar-toggler-custom" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom active" href="#beranda">
+              <i class="bi bi-house me-1"></i>Beranda
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#statistik">
+              <i class="bi bi-bar-chart me-1"></i>Statistik
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#produk">
+              <i class="bi bi-box me-1"></i>Produk
+            </a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-primary-custom" href="input.html">
+              <i class="bi bi-plus me-1"></i>Tambah Produk
+            </a>
+          </li>
+          <li class="nav-item ms-lg-1">
+            <button class="btn-wishlist-nav" data-bs-toggle="modal" data-bs-target="#wishlistModal" title="Wishlist Saya">
+              <i class="bi bi-heart-fill"></i>
+              <span class="wishlist-badge" id="wishlist-badge" style="display:none;">0</span>
+            </button>
+          </li>
+        </ul>
+        <button id="btn-theme" title="Ganti Tema">
+          <i class="bi bi-moon-stars-fill" id="theme-icon"></i>
+          <span id="theme-label">Mode Gelap</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section" id="beranda">
+    <div class="container">
+      <div class="row align-items-center min-vh-hero gy-4">
+
+        <div class="col-lg-5">
+          <p class="hero-eyebrow">Sistem Manajemen Tumbler</p>
+          <h1 class="hero-title">
+            Kelola Stok &amp;<br>Penjualan dengan<br>Mudah.
+          </h1>
+          <p class="hero-desc">
+            Platform sederhana untuk mencatat produk, memantau stok, dan melihat penjualan tumbler Anda.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="tambah.html" class="btn btn-primary-custom">
+              <i class="bi bi-plus-circle me-2"></i>Tambah Produk
+            </a>
+            <a href="#produk" class="btn btn-outline-custom">
+              <i class="bi bi-eye me-2"></i>Lihat Produk
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="hero-img-container">
+            <img src="assets/bg.jpg"
+                 onerror="this.onerror=null; this.src=''; this.parentElement.classList.add('hero-img-fallback');"
+                 alt="Tumbler produk unggulan"
+                 class="hero-product-img" />
+            <div class="hero-label label-a">
+              <i class="bi bi-check-circle-fill text-success me-1"></i>
+              Vakum Double Wall
+            </div>
+            <div class="hero-label label-b">
+              <i class="bi bi-droplet-fill me-1" style="color:var(--dusty)"></i>
+              Anti Bocor
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section" id="statistik">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-label">Ringkasan</p>
+        <h2 class="section-title">Statistik Penjualan</h2>
+      </div>
+      <div class="row g-4 justify-content-center">
+
+        <div class="col-sm-6 col-md-4">
+          <div class="stat-card">
+            <div class="stat-icon-wrap">
+              <i class="bi bi-box-seam"></i>
+            </div>
+            <div class="stat-val">128</div>
+            <div class="stat-label">Total Produk</div>
+            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i>+12 bulan ini</div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="stat-card">
+            <div class="stat-icon-wrap" style="background:rgba(122,158,126,0.15);">
+              <i class="bi bi-check-circle" style="color:#4a7a4e"></i>
+            </div>
+            <div class="stat-val">119</div>
+            <div class="stat-label">Stok Tersedia</div>
+            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i>93% tersedia</div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="stat-card">
+            <div class="stat-icon-wrap" style="background:rgba(102,78,68,0.1);">
+              <i class="bi bi-cash-coin" style="color:var(--dusty)"></i>
+            </div>
+            <div class="stat-val" style="font-size:1.6rem;">24,5 Jt</div>
+            <div class="stat-label">Total Penjualan</div>
+            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i>+8.2% bulan ini</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section" id="produk">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-5">
+        <div>
+          <p class="section-label">Inventori</p>
+          <h2 class="section-title mb-1">Daftar Produk Tumbler</h2>
+          <p class="section-desc mb-0">Geser kartu untuk melihat semua produk</p>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="slider-nav">
+            <button class="slider-btn" id="prevBtn"><i class="bi bi-chevron-left"></i></button>
+            <button class="slider-btn" id="nextBtn"><i class="bi bi-chevron-right"></i></button>
+          </div>
+          <a href="tambah.html" class="btn btn-primary-custom">
+            <i class="bi bi-plus-lg me-2"></i>Tambah
+          </a>
+        </div>
+      </div>
+
+      <div class="slider-wrapper">
+        <div class="slider-track" id="sliderTrack">
+
+          <!-- TBL-001 -->
+          <div class="product-slide-card" data-id="TBL-001" data-nama="AquaCore Pro" data-harga="Rp 185.000" data-stok="12">
+            <div class="pcard-img-wrap">
+              <img src="assets/chako lab putih.jpg" alt="AquaCore Pro" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-001</span>
+              </div>
+              <h5 class="pcard-name">AquaCore Pro</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Stainless Steel · 750 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 12</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 185.000</span>
+                <div class="d-flex gap-2">
+                  <div class="d-flex gap-1 align-items-center"><button class="btn-detail-buy">Beli</button><button class="btn-detail-view">Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-slide-card" data-id="TBL-002" data-nama="FrostKeep Slim" data-harga="Rp 145.000" data-stok="3">
+            <div class="pcard-img-wrap">
+              <img src="assets/chako lab.jpg" alt="FrostKeep Slim" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-low">Stok Tipis</span>
+                <span class="pcard-sku">TBL-002</span>
+              </div>
+              <h5 class="pcard-name">FrostKeep Slim</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Double Wall · 500 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 3</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 145.000</span>
+                <div class="d-flex gap-2">
+                  <div class="d-flex gap-1 align-items-center"><button class="btn-detail-buy">Beli</button><button class="btn-detail-view">Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-slide-card" data-id="TBL-003" data-nama="CeramiQool 1L" data-harga="Rp 220.000" data-stok="8">
+            <div class="pcard-img-wrap">
+              <img src="assets/mash.jpg" alt="CeramiQool 1L" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-003</span>
+              </div>
+              <h5 class="pcard-name">CeramiQool 1L</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Keramik · 1000 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 8</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 220.000</span>
+                <div class="d-flex gap-2">
+                  <div class="d-flex gap-1 align-items-center"><button class="btn-detail-buy">Beli</button><button class="btn-detail-view">Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-slide-card" data-id="TBL-004" data-nama="EcoSip Bamboo" data-harga="Rp 98.000" data-stok="0">
+            <div class="pcard-img-wrap">
+              <img src="assets/corkcicle.jpg" alt="EcoSip Bamboo" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-004</span>
+              </div>
+              <h5 class="pcard-name">EcoSip Bamboo</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Bambu · 600 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 7</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 98.000</span>
+                <div class="d-flex gap-2">
+                  <div class="d-flex gap-1 align-items-center"><button class="btn-detail-buy">Beli</button><button class="btn-detail-view">Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-slide-card" data-id="TBL-005" data-nama="VacuMax Elite" data-harga="Rp 265.000" data-stok="15">
+            <div class="pcard-img-wrap">
+              <img src="assets/vanow.jpg" alt="VacuMax Elite" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-005</span>
+              </div>
+              <h5 class="pcard-name">VacuMax Elite</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Stainless · 900 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 15</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 265.000</span>
+                <div class="d-flex gap-2">
+                  <div class="d-flex gap-1 align-items-center"><button class="btn-detail-buy">Beli</button><button class="btn-detail-view">Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-slide-card" data-id="TBL-006" data-nama="HydroZen Glass" data-harga="Rp 175.000" data-stok="6">
+            <div class="pcard-img-wrap">
+              <img src="assets/stanley blue.jpg" alt="HydroZen Glass" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-006</span>
+              </div>
+              <h5 class="pcard-name">HydroZen Glass</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Borosilikat · 650 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 6</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 175.000</span>
+                <div class="d-flex gap-2">
+                  <div class="d-flex gap-1 align-items-center"><button class="btn-detail-buy">Beli</button><button class="btn-detail-view">Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-slide-card" data-id="TBL-007" data-nama="TitanFlow Pro" data-harga="Rp 340.000" data-stok="5">
+            <div class="pcard-img-wrap">
+              <img src="assets/stellata.jpg" alt="TitanFlow Pro" class="pcard-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="pcard-img-fallback" style="display:none;"><i class="bi bi-cup-straw"></i></div>
+              <button class="btn-wishlist-card" title="Tambah ke Wishlist"><i class="bi bi-heart"></i></button>
+            </div>
+            <div class="pcard-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge-stock badge-in">Tersedia</span>
+                <span class="pcard-sku">TBL-007</span>
+              </div>
+              <h5 class="pcard-name">TitanFlow Pro</h5>
+              <p class="pcard-category"><i class="bi bi-layers me-1"></i>Titanium · 800 ml</p>
+              <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: 5</p>
+              <hr class="pcard-divider" />
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="pcard-price">Rp 340.000</span>
+                <div class="d-flex gap-2">
+                  <div class="d-flex gap-1 align-items-center"><button class="btn-detail-buy">Beli</button><button class="btn-detail-view">Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-detail">
+      <div class="modal-content modal-content-custom">
+        <div class="modal-header modal-header-custom">
+          <h5 class="modal-title-custom">
+            <i class="bi bi-box-seam me-2" style="color:var(--dusty)"></i>
+            Detail Produk
+          </h5>
+          <button type="button" class="btn-close-custom" data-bs-dismiss="modal">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="detail-img-wrap">
+            <img id="detail-img" src="" alt="" class="detail-img"
+              onerror="this.style.display='none';document.getElementById('detail-img-fallback').style.display='flex'" />
+            <div id="detail-img-fallback" class="detail-img-fallback" style="display:none;">
+              <i class="bi bi-cup-straw"></i>
+            </div>
+            <div class="detail-badge-wrap">
+              <span id="detail-badge" class="badge-stock"></span>
+            </div>
+          </div>
+          <div class="detail-info">
+            <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+              <h4 class="detail-nama" id="detail-nama">—</h4>
+              <span class="detail-sku" id="detail-sku">—</span>
+            </div>
+            <p class="detail-category" id="detail-category"><i class="bi bi-layers me-1"></i>—</p>
+            <div class="detail-specs" id="detail-specs"></div>
+            <div class="detail-price-row">
+              <div>
+                <div class="detail-price-label">Harga</div>
+                <div class="detail-price" id="detail-harga">—</div>
+              </div>
+              <div>
+                <div class="detail-price-label">Stok</div>
+                <div class="detail-stok" id="detail-stok-val">—</div>
+              </div>
+            </div>
+            <div class="detail-desc" id="detail-desc"></div>
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-custom justify-content-end">
+          <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Tutup</button>
+          <button type="button" class="btn-buy-modal" id="detail-buy-btn">
+            <i class="bi bi-bag-plus me-2"></i>Beli Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="wishlistModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-wishlist">
+      <div class="modal-content modal-content-custom">
+        <div class="modal-header modal-header-custom">
+          <h5 class="modal-title-custom">
+            <i class="bi bi-heart-fill me-2" style="color:var(--dusty)"></i>
+            Daftar Wishlist Saya
+            <span class="ms-2 badge-wishlist-count" id="modal-count">0 item</span>
+          </h5>
+          <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div class="modal-body modal-body-custom">
+          <!-- Kosong state -->
+          <div class="wishlist-empty" id="wishlist-empty">
+            <i class="bi bi-heart"></i>
+            <p>Belum ada produk di wishlist</p>
+            <small>Klik ikon ♡ di kartu produk untuk menambahkan</small>
+          </div>
+          <!-- List wishlist -->
+          <ul class="list-group list-group-wishlist" id="daftar-wishlist"></ul>
+        </div>
+        <div class="modal-footer modal-footer-custom">
+          <span class="wishlist-total-label">Total: <strong id="wishlist-total">Rp 0</strong></span>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Tutup</button>
+            <button type="button" class="btn btn-danger-custom" onclick="hapusWishlist()">
+              <i class="bi bi-trash me-1"></i>Kosongkan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="footer-brand">Tumblr<span>Vault</span></div>
+          <p class="footer-desc">Sistem manajemen penjualan tumbler yang sederhana dan efisien.</p>
+          <div class="mt-4">
+            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="footer-heading">Navigasi</div>
+          <a href="#beranda" class="footer-link">Beranda</a>
+          <a href="#statistik" class="footer-link">Statistik</a>
+          <a href="#produk" class="footer-link">Produk</a>
+          <a href="tambah.html" class="footer-link">Tambah Produk</a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="footer-heading">Kategori</div>
+          <a href="#" class="footer-link">Stainless Steel</a>
+          <a href="#" class="footer-link">Double Wall</a>
+          <a href="#" class="footer-link">Keramik</a>
+          <a href="#" class="footer-link">Bambu &amp; Eco</a>
+        </div>
+        <div class="col-md-4 col-lg-3">
+          <div class="footer-heading">Kontak</div>
+          <a href="#" class="footer-link"><i class="bi bi-envelope me-2"></i><span class="__cf_email__" data-cfemail="b0d1d4ddd9def0c4c5ddd2dcc2c6d1c5dcc49ed9d4">[email&#160;protected]</span></a>
+          <a href="#" class="footer-link"><i class="bi bi-telephone me-2"></i>+62 812 3456 7890</a>
+          <a href="#" class="footer-link"><i class="bi bi-geo-alt me-2"></i>Bandung, Jawa Barat</a>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <p class="footer-bottom mb-0">© 2025 TumblrVault.</p>
+        <p class="footer-bottom mb-0">HTML · CSS · Bootstrap 5</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  
+    const btnTheme   = document.getElementById('btn-theme');
+    const themeIcon  = document.getElementById('theme-icon');
+    const themeLabel = document.getElementById('theme-label');
+    const body       = document.body;
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        body.classList.add('dark-mode');
+        themeIcon.className    = 'bi bi-sun-fill';
+        themeLabel.textContent = 'Mode Terang';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        body.classList.remove('dark-mode');
+        themeIcon.className    = 'bi bi-moon-stars-fill';
+        themeLabel.textContent = 'Mode Gelap';
+        localStorage.removeItem('theme');
+      }
+    }
+    applyTheme(localStorage.getItem('theme') === 'dark');
+    btnTheme.addEventListener('click', () => applyTheme(!body.classList.contains('dark-mode')));
+
+    let wishlist = [];
+
+    function updateWishlistUI() {
+      const badge   = document.getElementById('wishlist-badge');
+      const countEl = document.getElementById('modal-count');
+      const emptyEl = document.getElementById('wishlist-empty');
+      const listEl  = document.getElementById('daftar-wishlist');
+      const totalEl = document.getElementById('wishlist-total');
+
+      badge.textContent  = wishlist.length;
+      badge.style.display = wishlist.length > 0 ? 'flex' : 'none';
+      countEl.textContent = wishlist.length + ' item';
+      emptyEl.style.display = wishlist.length === 0 ? 'flex' : 'none';
+      listEl.style.display  = wishlist.length === 0 ? 'none' : 'block';
+
+      listEl.innerHTML = '';
+      let total = 0;
+      wishlist.forEach(function(item, idx) {
+        const hargaNum = parseInt(item.harga.replace(/[^0-9]/g, ''));
+        total += hargaNum;
+        const li = document.createElement('li');
+        li.className = 'list-group-item wishlist-item';
+        li.innerHTML =
+          '<div class="wishlist-item-info">' +
+            '<span class="wishlist-item-icon"><i class="bi bi-cup-straw"></i></span>' +
+            '<div>' +
+              '<div class="wishlist-item-name">' + item.nama + '</div>' +
+              '<div class="wishlist-item-meta">' + item.id + ' &bull; ' + item.harga + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<button class="wishlist-remove-btn" onclick="hapusItemWishlist(' + idx + ')" title="Hapus">' +
+            '<i class="bi bi-x"></i>' +
+          '</button>';
+        listEl.appendChild(li);
+      });
+      totalEl.textContent = 'Rp ' + total.toLocaleString('id-ID');
+    }
+
+    function hapusItemWishlist(idx) {
+      const card = document.querySelector('.product-slide-card[data-id="' + wishlist[idx].id + '"]');
+      if (card) {
+        const btn = card.querySelector('.btn-wishlist-card');
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="bi bi-heart"></i>';
+        btn.title = 'Tambah ke Wishlist';
+      }
+      wishlist.splice(idx, 1);
+      updateWishlistUI();
+    }
+
+    function hapusWishlist() {
+      wishlist.forEach(function(item) {
+        const card = document.querySelector('.product-slide-card[data-id="' + item.id + '"]');
+        if (card) {
+          const btn = card.querySelector('.btn-wishlist-card');
+          btn.classList.remove('active');
+          btn.innerHTML = '<i class="bi bi-heart"></i>';
+          btn.title = 'Tambah ke Wishlist';
+        }
+      });
+      wishlist = [];
+      updateWishlistUI();
+    }
+
+    function aktifkanTombolWishlist() {
+      document.querySelectorAll('.btn-wishlist-card').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const card  = btn.closest('.product-slide-card');
+          const id    = card.dataset.id;
+          const nama  = card.dataset.nama;
+          const harga = card.dataset.harga;
+          const idx   = wishlist.findIndex(function(w) { return w.id === id; });
+
+          if (idx === -1) {
+            wishlist.push({ id: id, nama: nama, harga: harga });
+            btn.classList.add('active');
+            btn.innerHTML = '<i class="bi bi-heart-fill"></i>';
+            btn.title = 'Hapus dari Wishlist';
+            btn.classList.add('bounce');
+            setTimeout(function() { btn.classList.remove('bounce'); }, 400);
+          } else {
+            wishlist.splice(idx, 1);
+            btn.classList.remove('active');
+            btn.innerHTML = '<i class="bi bi-heart"></i>';
+            btn.title = 'Tambah ke Wishlist';
+          }
+          updateWishlistUI();
+        });
+      });
+    }
+
+    function beliProduk(card) {
+      const stokEl  = card.querySelector('.stok-text');
+      const namaEl  = card.querySelector('.pcard-name');
+      const badgeEl = card.querySelector('.badge-stock');
+      const buyBtn  = card.querySelector('.btn-detail-buy');
+      const nama    = namaEl ? namaEl.innerText : 'Produk';
+      let stok = parseInt(stokEl.innerText.replace(/[^0-9]/g, ''));
+
+      if (stok > 0) {
+        stok--;
+        stokEl.innerHTML = '<i class="bi bi-box-seam me-1"></i>Stok: ' + stok;
+        if (stok <= 3) {
+          badgeEl.className    = 'badge-stock badge-low';
+          badgeEl.textContent  = 'Stok Tipis';
+        }
+        tampilkanToast('&#10003; Berhasil membeli <strong>' + nama + '</strong>');
+        return true;
+      }
+      return false;
+    }
+
+    function aktifkanTombolBeli() {
+      document.querySelectorAll('.btn-detail-buy').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+          const card = e.target.closest('.product-slide-card');
+          beliProduk(card);
+        });
+      });
+    }
+
+    var produkData = {
+      'TBL-001': {
+        desc: 'Tumbler premium berbahan stainless steel 18/8 food-grade dengan lapisan vakum double-wall. Menjaga minuman dingin hingga 24 jam dan panas hingga 12 jam. Dilengkapi tutup anti-bocor berputar 360°.',
+        specs: [
+          { icon: 'bi-moisture', label: 'Material', val: 'Stainless Steel 18/8' },
+          { icon: 'bi-snow', label: 'Dingin', val: 'Hingga 24 jam' },
+          { icon: 'bi-fire', label: 'Panas', val: 'Hingga 12 jam' },
+          { icon: 'bi-rulers', label: 'Kapasitas', val: '750 ml' },
+        ]
+      },
+      'TBL-002': {
+        desc: 'Desain slim minimalis cocok untuk commuter & gym. Dinding ganda mencegah kondensasi di luar botol. Tutup flip-top one-hand dengan kunci pengaman.',
+        specs: [
+          { icon: 'bi-layers', label: 'Tipe', val: 'Double Wall Vacuum' },
+          { icon: 'bi-snow', label: 'Dingin', val: 'Hingga 18 jam' },
+          { icon: 'bi-fire', label: 'Panas', val: 'Hingga 8 jam' },
+          { icon: 'bi-rulers', label: 'Kapasitas', val: '500 ml' },
+        ]
+      },
+      'TBL-003': {
+        desc: 'Lapisan keramik di dalam memberikan rasa minuman yang lebih murni tanpa bau plastik atau logam. Ideal untuk teh, kopi, dan infused water. BPA-free & ramah lingkungan.',
+        specs: [
+          { icon: 'bi-gem', label: 'Material', val: 'Ceramic Coated Interior' },
+          { icon: 'bi-snow', label: 'Dingin', val: 'Hingga 20 jam' },
+          { icon: 'bi-fire', label: 'Panas', val: 'Hingga 10 jam' },
+          { icon: 'bi-rulers', label: 'Kapasitas', val: '1000 ml' },
+        ]
+      },
+      'TBL-004': {
+        desc: 'Terbuat dari serat bambu organik terbarukan. Pilihan eco-friendly terbaik untuk mengurangi sampah plastik. Ringan dan nyaman digenggam, cocok untuk aktivitas outdoor.',
+        specs: [
+          { icon: 'bi-tree', label: 'Material', val: 'Organic Bamboo Fiber' },
+          { icon: 'bi-recycle', label: 'Sertifikasi', val: 'BPA-Free, Eco-Cert' },
+          { icon: 'bi-feather', label: 'Berat', val: 'Sangat ringan (~180g)' },
+          { icon: 'bi-rulers', label: 'Kapasitas', val: '600 ml' },
+        ]
+      },
+      'TBL-005': {
+        desc: 'Teknologi VacuMax Elite dengan insulasi nitrogen triple-layer untuk performa termal tertinggi. Permukaan powder-coat tahan goresan dengan grip ergonomis. Cocok untuk pendaki dan atlet profesional.',
+        specs: [
+          { icon: 'bi-trophy', label: 'Insulasi', val: 'Triple-Layer VacuMax' },
+          { icon: 'bi-snow', label: 'Dingin', val: 'Hingga 36 jam' },
+          { icon: 'bi-fire', label: 'Panas', val: 'Hingga 18 jam' },
+          { icon: 'bi-rulers', label: 'Kapasitas', val: '900 ml' },
+        ]
+      },
+      'TBL-006': {
+        desc: 'Kaca borosilikat berkualitas lab tahan thermal shock — aman untuk minuman mendidih langsung. Transparan sehingga warna minuman terlihat cantik. Sleeve silikon anti-slip dan anti-baret.',
+        specs: [
+          { icon: 'bi-eye', label: 'Material', val: 'Borosilicate Glass' },
+          { icon: 'bi-thermometer-half', label: 'Tahan Suhu', val: '-20°C s.d. 150°C' },
+          { icon: 'bi-shield-check', label: 'Sertifikasi', val: 'Lab-Grade, BPA-Free' },
+          { icon: 'bi-rulers', label: 'Kapasitas', val: '650 ml' },
+        ]
+      },
+      'TBL-007': {
+        desc: 'Dibuat dari titanium aerospace-grade — material terkuat dan paling ringan yang digunakan dalam botol minum. Tidak berasa, tidak berbau, tahan karat seumur hidup. Pilihan ultimate untuk pecinta outdoor.',
+        specs: [
+          { icon: 'bi-lightning-charge', label: 'Material', val: 'Titanium Grade 1' },
+          { icon: 'bi-snow', label: 'Dingin', val: 'Hingga 30 jam' },
+          { icon: 'bi-fire', label: 'Panas', val: 'Hingga 15 jam' },
+          { icon: 'bi-rulers', label: 'Kapasitas', val: '800 ml' },
+        ]
+      }
+    };
+
+    var currentDetailCard = null;
+
+    function bukaDetailProduk(card) {
+      currentDetailCard = card;
+      const id      = card.dataset.id;
+      const nama    = card.dataset.nama;
+      const harga   = card.dataset.harga;
+      const stokEl  = card.querySelector('.stok-text');
+      const badgeEl = card.querySelector('.badge-stock');
+      const imgEl   = card.querySelector('.pcard-img');
+      const catEl   = card.querySelector('.pcard-category');
+      let stok      = parseInt(stokEl ? stokEl.innerText.replace(/[^0-9]/g,'') : 0);
+
+      document.getElementById('detail-nama').textContent  = nama;
+      document.getElementById('detail-sku').textContent   = id;
+      document.getElementById('detail-harga').textContent = harga;
+      document.getElementById('detail-category').innerHTML = catEl ? catEl.innerHTML : '';
+
+      const stokValEl = document.getElementById('detail-stok-val');
+      stokValEl.textContent = stok + ' unit';
+      stokValEl.className   = 'detail-stok ' + (stok <= 3 ? 'stok-tipis' : 'stok-aman');
+
+      const detailBadge = document.getElementById('detail-badge');
+      detailBadge.className   = badgeEl ? badgeEl.className : 'badge-stock';
+      detailBadge.textContent = badgeEl ? badgeEl.textContent : '';
+
+      const detailImg         = document.getElementById('detail-img');
+      const detailImgFallback = document.getElementById('detail-img-fallback');
+      if (imgEl && imgEl.style.display !== 'none' && imgEl.src) {
+        detailImg.src              = imgEl.src;
+        detailImg.style.display    = 'block';
+        detailImgFallback.style.display = 'none';
+      } else {
+        detailImg.style.display    = 'none';
+        detailImgFallback.style.display = 'flex';
+      }
+
+      const data = produkData[id] || { desc: '', specs: [] };
+      document.getElementById('detail-desc').textContent = data.desc;
+      const specsEl = document.getElementById('detail-specs');
+      specsEl.innerHTML = data.specs.map(function(s) {
+        return '<div class="spec-item">' +
+          '<i class="bi ' + s.icon + ' spec-icon"></i>' +
+          '<div><div class="spec-label">' + s.label + '</div>' +
+          '<div class="spec-val">' + s.val + '</div></div>' +
+          '</div>';
+      }).join('');
+
+      const modalBuyBtn = document.getElementById('detail-buy-btn');
+      modalBuyBtn.disabled   = false;
+      modalBuyBtn.innerHTML  = '<i class="bi bi-bag-plus me-2"></i>Beli Sekarang';
+      modalBuyBtn.classList.remove('disabled');
+
+      var modal = new bootstrap.Modal(document.getElementById('detailModal'));
+      modal.show();
+    }
+
+    function aktifkanTombolDetail() {
+      document.querySelectorAll('.btn-detail-view').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const card = btn.closest('.product-slide-card');
+          bukaDetailProduk(card);
+        });
+      });
+    }
+
+    document.getElementById('detail-buy-btn').addEventListener('click', function() {
+      if (!currentDetailCard) return;
+      var success = beliProduk(currentDetailCard);
+      if (success) {
+        const stokEl = currentDetailCard.querySelector('.stok-text');
+        const stok   = parseInt(stokEl.innerText.replace(/[^0-9]/g,''));
+        const stokValEl = document.getElementById('detail-stok-val');
+        stokValEl.textContent = stok + ' unit';
+        stokValEl.className   = 'detail-stok ' + (stok <= 3 ? 'stok-tipis' : 'stok-aman');
+      }
+    });
+
+    function tampilkanToast(pesan) {
+      var toast = document.getElementById('toast-notif');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notif';
+        toast.className = 'toast-notif';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = pesan;
+      toast.classList.add('show');
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(function() { toast.classList.remove('show'); }, 2500);
+    }
+
+    aktifkanTombolWishlist();
+    aktifkanTombolBeli();
+    aktifkanTombolDetail();
+    updateWishlistUI();
+
+    (function () {
+      const track   = document.getElementById('sliderTrack');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const dotsWrap = document.getElementById('sliderDots');
+      const cards   = track.querySelectorAll('.product-slide-card');
+      const GAP     = 24;
+      let current = 0, isDragging = false, startX = 0, scrollStart = 0;
+
+      function visibleCount() {
+        return Math.floor(track.parentElement.offsetWidth / (cards[0].offsetWidth + GAP)) || 1;
+      }
+      function maxIndex() { return Math.max(0, cards.length - visibleCount()); }
+      function goTo(idx) {
+        current = Math.max(0, Math.min(idx, maxIndex()));
+        track.style.transform = 'translateX(-' + (current * (cards[0].offsetWidth + GAP)) + 'px)';
+        updateDots(); updateBtns();
+      }
+      function updateBtns() {
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current >= maxIndex();
+      }
+      function updateDots() {
+        dotsWrap.querySelectorAll('.slider-dot').forEach(function(d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+      function buildDots() {
+        dotsWrap.innerHTML = '';
+        for (let i = 0; i <= maxIndex(); i++) {
+          const btn = document.createElement('button');
+          btn.className = 'slider-dot' + (i === 0 ? ' active' : '');
+          btn.addEventListener('click', function() { goTo(i); });
+          dotsWrap.appendChild(btn);
+        }
+      }
+
+      prevBtn.addEventListener('click', function() { goTo(current - 1); });
+      nextBtn.addEventListener('click', function() { goTo(current + 1); });
+
+      const wrapper = track.parentElement;
+      function dragStart(x) { isDragging = true; startX = x; scrollStart = current; }
+      function dragMove(x) {
+        if (!isDragging) return;
+        const diff = startX - x;
+        if (Math.abs(diff) > (cards[0].offsetWidth + GAP) * 0.25) {
+          goTo(diff > 0 ? scrollStart + 1 : scrollStart - 1);
+          isDragging = false;
+        }
+      }
+      function dragEnd() { isDragging = false; }
+
+      wrapper.addEventListener('mousedown',  function(e) { dragStart(e.clientX); });
+      wrapper.addEventListener('mousemove',  function(e) { dragMove(e.clientX); });
+      wrapper.addEventListener('mouseup',    dragEnd);
+      wrapper.addEventListener('mouseleave', dragEnd);
+      wrapper.addEventListener('touchstart', function(e) { dragStart(e.touches[0].clientX); }, { passive: true });
+      wrapper.addEventListener('touchmove',  function(e) { dragMove(e.touches[0].clientX); },  { passive: true });
+      wrapper.addEventListener('touchend',   dragEnd);
+
+      buildDots(); updateBtns();
+      window.addEventListener('resize', function() { buildDots(); goTo(Math.min(current, maxIndex())); });
+    })();
+    
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', function() {
+      let cur = '';
+      sections.forEach(function(s) { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+      document.querySelectorAll('.nav-link-custom').forEach(function(l) {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === '#' + cur) l.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
