@@ -10,7 +10,7 @@ class CheckLogin
     public function handle(Request $request, Closure $next)
     {
         if (session('user')) {
-            return redirect()->route('dashboard');
+            return redirect()->route('products');
         }
 
         return $next($request);

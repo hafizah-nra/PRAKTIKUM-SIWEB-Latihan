@@ -52,7 +52,7 @@ class AuthController extends Controller
             cookie()->queue(cookie()->forget('username'));
         }
 
-        return redirect()->route('dashboard');
+return redirect()->route('products');
     }
 
     public function logout(Request $request)

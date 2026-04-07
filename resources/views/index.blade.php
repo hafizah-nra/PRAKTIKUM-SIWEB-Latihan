@@ -35,9 +35,9 @@
             </a>
           </li>
           <li class="nav-item ms-lg-2">
-            <a class="btn btn-primary-custom" href="{{ route('produk.tambah') }}">
-              <i class="bi bi-plus me-1"></i>Tambah Produk
-            </a>
+           <a class="btn btn-primary-custom" href="{{ route('produk.tambah') }}">
+           <i class="bi bi-plus me-1"></i>Tambah Produk
+           </a>
           </li>
           <li class="nav-item ms-lg-1">
             <button class="btn-wishlist-nav" data-bs-toggle="modal" data-bs-target="#wishlistModal">
@@ -89,9 +89,9 @@
             Platform sederhana untuk mencatat produk, memantau stok, dan melihat penjualan tumbler Anda.
           </p>
           <div class="d-flex flex-wrap gap-3 mt-4">
-            <a href="{{ route('produk.tambah') }}" class="btn btn-primary-custom">
+          <a href="{{ route('produk.tambah') }}" class="btn btn-primary-custom">
               <i class="bi bi-plus-circle me-2"></i>Tambah Produk
-            </a>
+          </a>
             <a href="#produk" class="btn btn-outline-custom">
               <i class="bi bi-eye me-2"></i>Lihat Produk
             </a>
@@ -160,19 +160,20 @@
   {{-- ── PRODUK ────────────────────────────────────────────── --}}
   <section class="product-section" id="produk">
     <div class="container">
-      <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-5">
-        <div>
-          <p class="section-label">Inventori</p>
-          <h2 class="section-title mb-1">Daftar Produk Tumbler</h2>
-          <p class="section-desc mb-0">Geser kartu untuk melihat semua produk</p>
-        </div>
+     <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="section-title mb-0">Daftar Produk Tumbler</h2>
+      <a href="{{ route('products') }}" class="text-decoration-none text-muted">
+          Lihat Semua Produk <i class="bi bi-chevron-double-right small"></i>
+      </a>
+    </div>
+    <p class="section-desc mb-5">Geser kartu untuk melihat koleksi tumbler terbaru kami.</p>
         <div class="d-flex align-items-center gap-3">
           <div class="slider-nav">
             <button class="slider-btn" id="prevBtn"><i class="bi bi-chevron-left"></i></button>
             <button class="slider-btn" id="nextBtn"><i class="bi bi-chevron-right"></i></button>
           </div>
           <a href="{{ route('produk.tambah') }}" class="btn btn-primary-custom">
-            <i class="bi bi-plus-lg me-2"></i>Tambah
+              <i class="bi bi-plus-lg me-2"></i>Tambah
           </a>
         </div>
       </div>
@@ -502,11 +503,12 @@
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
-          <div class="footer-heading">Navigasi</div>
-          <a href="#beranda" class="footer-link">Beranda</a>
-          <a href="#statistik" class="footer-link">Statistik</a>
-          <a href="#produk" class="footer-link">Produk</a>
-          <a href="{{ route('produk.tambah') }}" class="footer-link">Tambah Produk</a>
+        {{-- Baris 373: Link Navigasi di Footer --}}
+        <div class="footer-heading">Navigasi</div>
+        <a href="#beranda" class="footer-link">Beranda</a>
+        <a href="#statistik" class="footer-link">Statistik</a>
+        <a href="#produk" class="footer-link">Produk</a>
+        <a href="{{ route('produk.tambah') }}" class="footer-link">Tambah Produk</a>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <div class="footer-heading">Kategori</div>

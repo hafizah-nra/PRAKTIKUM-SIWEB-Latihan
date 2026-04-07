@@ -148,13 +148,13 @@
                     required>
                     <option value="" disabled {{ old('kategori') ? '' : 'selected' }}>Pilih kategori...</option>
                     @foreach([
-                      'stainless'   => 'Stainless Steel',
-                      'double-wall' => 'Double Wall',
-                      'keramik'     => 'Keramik',
-                      'bambu'       => 'Bambu',
-                      'plastik'     => 'Plastik BPA-Free',
-                      'titanium'    => 'Titanium',
-                      'borosilikat' => 'Borosilikat / Kaca',
+                      'Stainless Steel'     => 'Stainless Steel',
+                      'Double Wall'         => 'Double Wall',
+                      'Keramik'             => 'Keramik',
+                      'Bambu'               => 'Bambu',
+                      'Plastik BPA-Free'    => 'Plastik BPA-Free',
+                      'Titanium'            => 'Titanium',
+                      'Borosilikat / Kaca'  => 'Borosilikat / Kaca',
                     ] as $val => $label)
                       <option value="{{ $val }}" {{ old('kategori') == $val ? 'selected' : '' }}>
                         {{ $label }}
