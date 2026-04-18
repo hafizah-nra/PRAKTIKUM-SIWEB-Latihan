@@ -22,12 +22,6 @@
           <li class="nav-item"><a class="nav-link nav-link-custom active" href="#beranda"><i class="bi bi-house me-1"></i>Beranda</a></li>
           <li class="nav-item"><a class="nav-link nav-link-custom" href="#statistik"><i class="bi bi-bar-chart me-1"></i>Statistik</a></li>
           <li class="nav-item"><a class="nav-link nav-link-custom" href="#produk"><i class="bi bi-box me-1"></i>Produk</a></li>
-          <li class="nav-item ms-lg-2">
-            {{-- Tombol Trigger Modal di Navbar --}}
-            <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tambahProdukModal">
-              <i class="bi bi-plus me-1"></i>Tambah Produk
-            </button>
-          </li>
           <li class="nav-item ms-lg-1">
             <button class="btn-wishlist-nav" data-bs-toggle="modal" data-bs-target="#wishlistModal">
               <i class="bi bi-heart-fill"></i>
@@ -71,11 +65,7 @@
           <h1 class="hero-title">Kelola Stok &amp;<br>Penjualan dengan<br>Mudah.</h1>
           <p class="hero-desc">Platform sederhana untuk mencatat produk, memantau stok, dan melihat penjualan tumbler Anda.</p>
           <div class="d-flex flex-wrap gap-3 mt-4">
-            {{-- Tombol Trigger Modal di Hero --}}
-            <button class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tambahProdukModal">
-              <i class="bi bi-plus-circle me-2"></i>Tambah Produk
-            </button>
-            <a href="#produk" class="btn btn-outline-custom"><i class="bi bi-eye me-2"></i>Lihat Produk</a>
+            <a href="#produk" class="btn btn-primary-custom"><i class="bi bi-eye me-2"></i>Lihat Produk</a>
           </div>
         </div>
         <div class="col-lg-7">
@@ -104,7 +94,6 @@
             <div class="stat-label">Total Produk</div>
           </div>
         </div>
-        {{-- ... Statistik lainnya tetap sama ... --}}
       </div>
     </div>
   </section>
@@ -128,7 +117,7 @@
                 @foreach($products as $p)
                 <div class="product-slide-card" data-id="{{ $p->product_id }}">
                     <div class="pcard-img-wrap">
-                        <img src="{{ asset('assets/default-tumbler.jpg') }}" class="pcard-img" />
+                        <img src="{{ asset('assets/stanley.jpg') }}" class="pcard-img" />
                         <button class="btn-wishlist-card"><i class="bi bi-heart"></i></button>
                     </div>
                     <div class="pcard-body">
@@ -140,6 +129,7 @@
                         </div>
                         <h5 class="pcard-name">{{ $p->product_name }}</h5>
                         <p class="pcard-category"><i class="bi bi-layers me-1"></i>{{ $p->category->category_name }}</p>
+                        <p class="pcard-brand"><i class="bi bi-tag me-1"></i>{{ $p->brand->nama_brand }}</p>
                         <p class="stok-text"><i class="bi bi-box-seam me-1"></i>Stok: {{ $p->product_stock }}</p>
                         <hr class="pcard-divider" />
                         <div class="d-flex justify-content-between align-items-center">
@@ -150,6 +140,12 @@
                 </div>
                 @endforeach
             </div>
+            <button id="sliderPrev" class="slider-nav-btn slider-nav-prev" title="Produk Sebelumnya">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button id="sliderNext" class="slider-nav-btn slider-nav-next" title="Produk Berikutnya">
+                <i class="bi bi-chevron-right"></i>
+            </button>
         </div>
     </div>
   </section>
@@ -190,6 +186,16 @@
               </select>
             </div>
 
+            <div class="mb-3">
+              <label for="brand_id" class="form-label fw-bold">Brand</label>
+              <select class="form-select" id="brand_id" name="brand_id" required>
+                <option value="" selected disabled>Pilih Brand...</option>
+                @foreach ($brands as $brand)
+                  <option value="{{ $brand->brand_id }}">{{ $brand->nama_brand }}</option>
+                @endforeach
+              </select>
+            </div>
+
             <div class="row">
               <div class="col-6 mb-3">
                 <label for="product_price" class="form-label fw-bold">Harga Satuan</label>
@@ -215,7 +221,30 @@
     </div>
   </div>
 
-  {{-- 2. Modal Logout --}}
+  {{-- 2. Modal Wishlist/Favorit --}}
+  <div class="modal fade" id="wishlistModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header modal-header-custom bg-light border-0 pb-3">
+          <h5 class="modal-title fw-bold">
+            <i class="bi bi-heart-fill me-2" style="color:#e74c3c;"></i>Produk Favoritan Saya
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="wishlistContent" style="min-height: 200px;">
+          <div class="text-center text-muted py-4">
+            <i class="bi bi-heart" style="font-size: 2rem; opacity: 0.3;"></i>
+            <p class="mt-2">Belum ada produk favorit</p>
+          </div>
+        </div>
+        <div class="modal-footer bg-light border-top">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{-- 3. Modal Logout --}}
   <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width:380px;">
         <div class="modal-content border-0 shadow">
@@ -241,7 +270,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('js/script.js') }}"></script>
   <script>
-    // Handling Toast Notification
     const toast = document.getElementById('flashToast');
     if (toast) {
       setTimeout(() => {
@@ -249,6 +277,171 @@
         setTimeout(() => toast.remove(), 500);
       }, 3000);
     }
+
+    const STORAGE_KEY = 'tumblr_favorites';
+    const productData = @json($products);
+
+    function getFavorites() {
+      const fav = localStorage.getItem(STORAGE_KEY);
+      return fav ? JSON.parse(fav) : {};
+    }
+
+    function saveFavorites(favorites) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
+      updateFavoriteBadge();
+    }
+
+    function updateFavoriteBadge() {
+      const favorites = getFavorites();
+      const count = Object.keys(favorites).length;
+      const badge = document.getElementById('wishlist-badge');
+      if (count > 0) {
+        badge.textContent = count;
+        badge.style.display = 'inline-flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function updateWishlistModal() {
+      const favorites = getFavorites();
+      const content = document.getElementById('wishlistContent');
+      
+      if (Object.keys(favorites).length === 0) {
+        content.innerHTML = `
+          <div class="text-center text-muted py-4">
+            <i class="bi bi-heart" style="font-size: 2rem; opacity: 0.3;"></i>
+            <p class="mt-2">Belum ada produk favorit</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      Object.entries(favorites).forEach(([productId, product]) => {
+        html += `
+          <div class="favorite-item" data-id="${productId}">
+            <div class="favorite-img">
+              <img src="{{ asset('assets/stanley.jpg') }}" alt="${product.name}" />
+            </div>
+            <div class="favorite-info">
+              <div class="favorite-name">${product.name}</div>
+              <div class="favorite-detail"><strong>Kategori:</strong> ${product.category}</div>
+              <div class="favorite-detail"><strong>Brand:</strong> ${product.brand}</div>
+              <div class="favorite-price">Rp ${Number(product.price).toLocaleString('id-ID')}</div>
+            </div>
+            <button class="btn btn-sm btn-danger btn-remove-fav" type="button">
+              <i class="bi bi-trash"></i> Hapus
+            </button>
+          </div>
+        `;
+      });
+      content.innerHTML = html;
+
+      // Event listeners untuk tombol hapus
+      content.querySelectorAll('.btn-remove-fav').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const productId = this.closest('.favorite-item').dataset.id;
+          removeFavorite(productId);
+        });
+      });
+    }
+
+    function toggleFavorite(productId, product) {
+      const favorites = getFavorites();
+      if (favorites[productId]) {
+        delete favorites[productId];
+      } else {
+        favorites[productId] = {
+          name: product.product_name,
+          category: product.category.category_name,
+          brand: product.brand.nama_brand,
+          price: product.product_price
+        };
+      }
+      saveFavorites(favorites);
+    }
+
+    function removeFavorite(productId) {
+      const favorites = getFavorites();
+      delete favorites[productId];
+      saveFavorites(favorites);
+      updateWishlistModal();
+    }
+
+    // Initialize wishlist on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      updateFavoriteBadge();
+
+      // Event listener untuk semua tombol wishlist di product cards
+      document.querySelectorAll('.btn-wishlist-card').forEach(btn => {
+        const productId = btn.closest('.product-slide-card').dataset.id;
+        const product = productData.find(p => p.product_id == productId);
+        
+        btn.addEventListener('click', () => {
+          toggleFavorite(productId, product);
+          const favorites = getFavorites();
+          if (favorites[productId]) {
+            btn.classList.add('active');
+            btn.innerHTML = '<i class="bi bi-heart-fill"></i>';
+          } else {
+            btn.classList.remove('active');
+            btn.innerHTML = '<i class="bi bi-heart"></i>';
+          }
+        });
+
+        // Restore state on load
+        const favorites = getFavorites();
+        if (favorites[productId]) {
+          btn.classList.add('active');
+          btn.innerHTML = '<i class="bi bi-heart-fill"></i>';
+        }
+      });
+
+      // Event listener untuk modal wishlist
+      const wishlistModal = document.getElementById('wishlistModal');
+      if (wishlistModal) {
+        wishlistModal.addEventListener('show.bs.modal', () => {
+          updateWishlistModal();
+        });
+      }
+
+      // ── SLIDER NAVIGATION ──────────────────────────────
+      const sliderTrack = document.getElementById('sliderTrack');
+      const sliderPrev = document.getElementById('sliderPrev');
+      const sliderNext = document.getElementById('sliderNext');
+      let scrollPosition = 0;
+      const cardWidth = 280; // Approximate card width + gap
+      const visibleCards = Math.floor(window.innerWidth / cardWidth);
+
+      function updateSliderButtons() {
+        const maxScroll = sliderTrack.scrollWidth - sliderTrack.parentElement.clientWidth;
+        sliderPrev.disabled = scrollPosition <= 0;
+        sliderNext.disabled = scrollPosition >= maxScroll - 10;
+      }
+
+      sliderPrev.addEventListener('click', () => {
+        scrollPosition = Math.max(0, scrollPosition - (cardWidth + 24));
+        sliderTrack.style.transform = `translateX(-${scrollPosition}px)`;
+        updateSliderButtons();
+      });
+
+      sliderNext.addEventListener('click', () => {
+        const maxScroll = sliderTrack.scrollWidth - sliderTrack.parentElement.clientWidth;
+        scrollPosition = Math.min(maxScroll, scrollPosition + (cardWidth + 24));
+        sliderTrack.style.transform = `translateX(-${scrollPosition}px)`;
+        updateSliderButtons();
+      });
+
+      // Add transition effect
+      sliderTrack.style.transition = 'transform 0.4s ease';
+
+      // Initialize buttons state
+      updateSliderButtons();
+
+      // Handle window resize
+      window.addEventListener('resize', updateSliderButtons);
+    });
   </script>
 
 </body>

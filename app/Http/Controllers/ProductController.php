@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\brand;
 use App\Models\product;
 use Illuminate\Http\Request;
 
@@ -10,14 +11,26 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource (product dashboard).
      */
     public function index()
 {
     $category = category::all();
-    $products = product::with('category')->get();
-    return view('product', compact('products', 'category'));
+    $brands = brand::all();
+    $products = product::with('category', 'brand')->get();
+    return view('product', compact('products', 'category', 'brands'));
 }
+
+    /**
+     * Display the product view page (grid with pagination).
+     */
+    public function view()
+    {
+        $category = category::all();
+        $brands = brand::all();
+        $products = product::with('category', 'brand')->get();
+        return view('view', compact('products', 'category', 'brands'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,6 +48,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'product_name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,category_id',
+            'brand_id' => 'required|exists:brands,brand_id',
             'product_price' => 'required|numeric|min:0',
             'product_stock' => 'required|integer|min:0',
         ]);

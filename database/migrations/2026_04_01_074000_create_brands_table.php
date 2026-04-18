@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id('category_id')->primarykey();
-            $table->string('category_name');
+        Schema::create('brands', function (Blueprint $table) {
+            $table->id('brand_id')->primaryKey();
+            $table->string('nama_brand');
             $table->timestamps();
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('brands');
         Schema::enableForeignKeyConstraints();
     }
 };

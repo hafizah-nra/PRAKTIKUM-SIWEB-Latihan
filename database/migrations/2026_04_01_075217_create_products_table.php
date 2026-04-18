@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id('product_id')->primarykey();
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('category_id')->on
-            ('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('brand_id');
+            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade');
+            $table->foreign('brand_id')->references('brand_id')->on('brands')->onDelete('cascade');
             $table->string('product_name');
             $table->integer('product_price');
             $table->integer('product_stock');
@@ -28,6 +29,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('products');
+        Schema::enableForeignKeyConstraints();
     }
 };

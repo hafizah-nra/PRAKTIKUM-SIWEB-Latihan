@@ -503,7 +503,6 @@
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
-        {{-- Baris 373: Link Navigasi di Footer --}}
         <div class="footer-heading">Navigasi</div>
         <a href="#beranda" class="footer-link">Beranda</a>
         <a href="#statistik" class="footer-link">Statistik</a>

@@ -21,6 +21,7 @@ Route::middleware('auth.custom')->group(function () {
 
     // Products (data dari database) → pakai ProductController
     Route::get('/products', [ProductController::class, 'index'])->name('products');
+    Route::get('/products/view', [ProductController::class, 'view'])->name('products.view');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
     // Tambah Produk
