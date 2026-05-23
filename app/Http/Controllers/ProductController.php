@@ -2,34 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
 use App\Models\brand;
+use App\Models\category;
 use App\Models\product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource (product dashboard).
+     * Display a listing of the resource.
      */
     public function index()
-{
-    $category = category::all();
-    $brands = brand::all();
-    $products = product::with('category', 'brand')->get();
-    return view('product', compact('products', 'category', 'brands'));
-}
-
-    /**
-     * Display the product view page (grid with pagination).
-     */
-    public function view()
     {
-        $category = category::all();
+        $categories = category::all();
         $brands = brand::all();
-        $products = product::with('category', 'brand')->get();
-        return view('view', compact('products', 'category', 'brands'));
+        $products = product::with(['category', 'brand'])->latest()->get();
+        return view('products.index', compact('products', 'categories', 'brands'));
     }
 
     /**
@@ -37,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = category::all();
+        $brands = brand::all();
+        return view('products.create', compact('categories', 'brands'));
     }
 
     /**
@@ -51,11 +42,17 @@ class ProductController extends Controller
             'brand_id' => 'required|exists:brands,brand_id',
             'product_price' => 'required|numeric|min:0',
             'product_stock' => 'required|integer|min:0',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
+
+        if ($request->hasFile('product_image')) {
+            $imagePath = $request->file('product_image')->store('products', 'public');
+            $validated['product_image'] = $imagePath;
+        }
 
         product::create($validated);
 
-        return redirect()->route('products')->with('success', 'Produk berhasil ditambahkan!');
+        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     /**
@@ -63,7 +60,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = product::with(['category', 'brand'])->findOrFail($id);
+        return response()->json($product);
     }
 
     /**
@@ -71,7 +69,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = product::findOrFail($id);
+        $categories = category::all();
+        $brands = brand::all();
+        return view('products.edit', compact('product', 'categories', 'brands'));
     }
 
     /**
@@ -79,7 +80,29 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = product::findOrFail($id);
+
+        $validated = $request->validate([
+            'product_name' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,category_id',
+            'brand_id' => 'required|exists:brands,brand_id',
+            'product_price' => 'required|numeric|min:0',
+            'product_stock' => 'required|integer|min:0',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+        ]);
+
+        if ($request->hasFile('product_image')) {
+            // Delete old image if exists
+            if ($product->product_image) {
+                Storage::disk('public')->delete($product->product_image);
+            }
+            $imagePath = $request->file('product_image')->store('products', 'public');
+            $validated['product_image'] = $imagePath;
+        }
+
+        $product->update($validated);
+
+        return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui!');
     }
 
     /**
@@ -87,6 +110,15 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = product::findOrFail($id);
+        
+        // Delete image if exists
+        if ($product->product_image) {
+            Storage::disk('public')->delete($product->product_image);
+        }
+
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus!');
     }
 }

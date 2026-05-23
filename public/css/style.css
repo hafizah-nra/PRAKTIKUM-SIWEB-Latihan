@@ -889,6 +889,7 @@ body.page-login::after {
 }
 
 .login-input-wrap input[type="text"],
+.login-input-wrap input[type="email"],
 .login-input-wrap input[type="password"] {
   width: 100%; padding: 12px 14px 12px 42px;
   background: var(--bg-input);

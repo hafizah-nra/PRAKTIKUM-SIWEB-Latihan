@@ -1,59 +1,98 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🥤 TumblrVault
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**TumblrVault** adalah sebuah purwarupa (prototype) Sistem Informasi Berbasis Web untuk manajemen penjualan dan inventaris produk *tumbler* (botol minum). Proyek ini dikembangkan menggunakan kerangka kerja Laravel dan merupakan bagian dari Tugas Akhir Praktikum Sistem Informasi Berbasis Web.
 
-## About Laravel
+Aplikasi ini mendemonstrasikan implementasi fitur-fitur standar industri web seperti autentikasi pengguna, manajemen hak akses (role), operasi CRUD (Create, Read, Update, Delete) yang dinamis, hingga kemampuan manajemen berkas (upload gambar).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Aplikasi TumblrVault dirancang untuk memenuhi beberapa kriteria fungsionalitas berikut:
 
-## Learning Laravel
+1. **Slicing Template (Blade)**
+   - Menggunakan arsitektur Blade Components & Layouts.
+   - Halaman dipisahkan secara modular menjadi `layouts/main`, serta _partials_ untuk elemen berulang seperti navigasi (`navbar`) dan kaki halaman (`footer`).
+2. **Autentikasi (Laravel Breeze)**
+   - Menggantikan sistem sesi (_session_) manual/hardcoded dengan sistem autentikasi standar bawaan Laravel yang lebih aman.
+   - Formulir pendaftaran dan masuk (Login/Register) dimodifikasi menyesuaikan tampilan gaya visual aplikasi.
+3. **Role Management (Admin & User)**
+   - Hak akses dipisahkan menjadi dua: **Admin** dan **User**.
+   - Admin memiliki wewenang penuh untuk mengubah inventaris barang (Tambah, Edit, Hapus).
+   - User (Pengguna Biasa) hanya memiliki wewenang untuk melihat detail barang di etalase dan mengelola profil mereka sendiri.
+4. **CRUD Produk & Upload Gambar**
+   - Mendukung manipulasi data produk secara komprehensif.
+   - Mendukung fungsi unggah foto produk dan unggah foto profil yang disimpan menggunakan ekosistem `Storage` lokal bawaan Laravel.
+5. **Dashboard & Profil Dinamis**
+   - Halaman profil pengguna untuk mengubah nama, email, kata sandi, serta foto profil.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Teknologi yang Digunakan
 
-## Laravel Sponsors
+- **Backend:** [Laravel](https://laravel.com) v11+ (PHP)
+- **Frontend:** HTML5, Vanilla CSS, Blade Templating, dan [Bootstrap 5](https://getbootstrap.com/)
+- **Database:** MySQL
+- **Development Environment:** Laragon / XAMPP, Composer, NPM
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🚀 Panduan Instalasi & Menjalankan Aplikasi
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Ikuti langkah-langkah di bawah ini untuk menjalankan aplikasi secara lokal di komputer Anda:
 
-## Contributing
+1. **Persiapkan Lingkungan (Environment)**
+   Salin file `.env.example` menjadi `.env` lalu sesuaikan konfigurasi database Anda.
+   ```bash
+   cp .env.example .env
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Instalasi Dependensi**
+   Jalankan perintah berikut untuk mengunduh semua library PHP dan Node.js yang dibutuhkan.
+   ```bash
+   composer install
+   npm install
+   ```
 
-## Code of Conduct
+3. **Generate Application Key**
+   ```bash
+   php artisan key:generate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Migrasi Database & Seeding**
+   Langkah ini akan membuat seluruh tabel di database dan mengisinya dengan data percobaan (termasuk akun pengguna).
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
 
-## Security Vulnerabilities
+5. **Tautkan Folder Storage (Storage Link)**
+   Langkah wajib agar gambar produk dan foto profil yang diunggah dapat ditampilkan di halaman web.
+   ```bash
+   php artisan storage:link
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. **Jalankan Aplikasi**
+   Kompilasi *assets* frontend dan nyalakan server lokal Laravel.
+   ```bash
+   npm run build
+   php artisan serve
+   ```
 
-## License
+Aplikasi sekarang dapat diakses melalui browser pada alamat: `http://localhost:8000`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🔑 Akun Uji Coba (Testing)
+
+Anda dapat menggunakan kredensial berikut untuk masuk dan menguji fungsionalitas sistem:
+
+### Akun Administrator (Akses Penuh CRUD)
+- **Email:** `admin@gmail.com`
+- **Password:** `admin123`
+
+### Akun Pengguna Biasa (Hanya Lihat Produk)
+- **Email:** `hafizah@gmail.com`
+- **Password:** `12345678`
+
+---
+*Dibuat untuk memenuhi Tugas Praktikum SIWEB.*
