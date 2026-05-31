@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
   <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body class="page-login">
 
@@ -124,6 +125,10 @@
                 </svg>
               </button>
             </div>
+          </div>
+
+          <div class="login-field d-flex justify-content-center my-3">
+            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
           </div>
 
           <div class="login-field mt-4">

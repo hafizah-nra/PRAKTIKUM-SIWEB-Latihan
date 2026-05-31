@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Http;
 
 class RegisteredUserController extends Controller
 {
@@ -34,6 +35,20 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'g-recaptcha-response' => ['required', function ($attribute, $value, $fail) {
+                $secret = config('services.recaptcha.secret_key');
+                $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => $secret,
+                    'response' => $value,
+                    'remoteip' => request()->ip(),
+                ]);
+
+                if (!$response->json('success')) {
+                    $fail('Validasi reCAPTCHA gagal, silakan coba lagi.');
+                }
+            }],
+        ], [
+            'g-recaptcha-response.required' => 'Silakan centang reCAPTCHA terlebih dahulu.',
         ]);
 
         $user = User::create([

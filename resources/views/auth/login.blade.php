@@ -108,6 +108,14 @@
             <button type="submit" class="login-btn-submit">Masuk Sekarang</button>
           </div>
 
+          <div class="login-field mt-3">
+            <a href="{{ route('google.redirect') }}" class="btn w-100 d-flex align-items-center justify-content-center gap-2"
+               style="background: transparent; border: 1.5px solid var(--border-form); color: var(--text-primary); border-radius: 10px; padding: 12px; font-family: var(--font-body); font-size: 0.88rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; transition: var(--transition);">
+                <i class="bi bi-google text-danger"></i>
+                Masuk dengan Google
+            </a>
+          </div>
+
         </form>
 
         <a href="{{ route('register') }}" class="login-back-link">
